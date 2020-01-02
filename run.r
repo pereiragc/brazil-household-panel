@@ -11,7 +11,9 @@ dict.filename <- file.path(proj.path, "data", "Input_PNADC_trimestral.txt")
 coldict  <- getcoldict(dict.filename) # Required for `pnad.read`
 
 
-# Read PNAD files
+## Read PNAD files
+## IMPORTANT: the files need to be downloaded first.
+##            `pnad.read` does *NOT* download files! 
 startyear  <- 2012
 startqtr  <- 01
 endyear  <-  2012
