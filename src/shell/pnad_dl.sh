@@ -79,8 +79,9 @@ if [[ "$currdir" != "shell" || "$prevdir" != "src" ]]; then
     exit 1
 fi
 
-# If non existent, create data directory
+# If non existent, create data & tmp directory
 mkdir -p ../../data
+mkdir -p .tmp
 cd .tmp
 
 
