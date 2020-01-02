@@ -2,6 +2,17 @@
 
 **Work in progress.**
 
+This package was built for those facing issues in downloading *PNAD contínua* with currently existing solutions, as described [here](#org056b579).
+
+This package seeks to address these two issues. It provides:
+
+-   A shell script for downloading PNAD data in a given range of years
+-   An R script for reading the downloaded data into R
+
+See [here](#org04754db) for details.
+
+## About PNAD Contínua
+
 *PNAD contínua* is a comprehensive household survey conducted by the [Brazilian Institute of Geography and Statistics (IBGE)](https://www.ibge.gov.br). There are two uncomfortable things about the way IBGE distributes the micro-data of *PNAD Contínua*:
 
 1.  Data are provided in \`fixed width format\`, along with a dictionary that maps column names to start and end positions. The provided dictionary, however, does not work "out of the box" with R
@@ -12,22 +23,9 @@
         PNADC_032017_20190729.zip
         PNADC_042017_20190729.zip
 
-This package seeks to address these two issues. It provides:
-
--   [X] A shell script for downloading PNAD data in a given range of years
--   [X] An R script for reading the downloaded data into R
-
-See [here](#org8b0220b) for details.
-
-**Comparison with alternatives.**
-
--   **lodown/adsfree:** Check it out [here](http://asdfree.com/pesquisa-nacional-por-amostra-de-domicilios-continua-pnadc.html). Comparison TBA.
--   **microdadosBrasil:** See [here](https://github.com/lucasmation/microdadosBrasil). Didn't work for me because it requires maintainers to update the package whenever the filename suffix &#x2013; as exemplified above &#x2013; changes. I can't &#x2013; as of Jan 2nd, 2020 &#x2013; get the package to download PNAD in my system.
--   **Data Zoom:** [Link](http://www.econ.puc-rio.br/datazoom/english/index.html). Only works with Stata, therefore I haven't tested that.
-
 ## Dependencies
 
-<a id="orgb546c22"></a>
+<a id="org40c24cf"></a>
 
 The versions listed below were the ones used in the testing process, not necessarily the oldest compatible version.
 
@@ -46,7 +44,7 @@ This package was only tested in a Linux system, although it should work on Mac a
 
 ## How to use
 
-<a id="org8b0220b"></a>
+<a id="org04754db"></a>
 
 1.  Clone the repo. For example, you might run
     
@@ -87,3 +85,36 @@ Options
 -   **-b YYYY:** Start year. Defaults to 2012 if `-e` unset; equal to `-e` otherwise
 -   **-e YYYY:** End year. Defaults to 2012 if `-b` unset; equal to `-b` otherwise
 -   **-d (yes|no|only):** If `yes`, downloads the variable dictionary. If `no`, skip downloading it. If `only`, download only the variable dictionary. Defaults to `yes`.
+
+### TODO pnad\_read
+
+## Alternatives
+
+<a id="org056b579"></a>
+
+-   **[lodown](https://github.com/ajdamico/lodown/):** This is part of an admirable large effort to have a unified framework for obtaining publicly available survey data.
+    
+    As of Jan 2nd 2020, I can't use it to download PNAD contínua. The following:
+    
+    ```R
+    library(lodown)
+    
+    pnadc_cat <-
+    get_catalog( "pnadc" ,
+                output_dir = file.path( path.expand( "~" ) , ".tmp" ) )
+    
+    pnadc_dl <- subset(pnadc_cat, year == "2016" & quarter == "01")
+    
+    dat <- lodown("pnadc", pnadc_dl)
+    ```
+    
+    gives out an error: `download issue with '.../Dicionario_e_input.zip'`.
+
+-   **[microdadosBrasil](https://github.com/lucasmation/microdadosBrasil):** Like `lodown` in spirit, but specializing in Brazilian data. Also fails:
+    
+    ```R
+    library(microdadosBrasil)
+    download_sourceData("PnadContinua", i = "2014-4q", unzip = T)
+    ```
+    
+    results in `Error in download.file(...)`.
