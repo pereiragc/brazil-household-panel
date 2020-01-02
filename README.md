@@ -15,9 +15,9 @@
 This package seeks to address these two issues. It provides:
 
 -   [X] A shell script for downloading PNAD data in a given range of years
--   [ ] An R script for reading the downloaded data into R (under construction)
+-   [X] An R script for reading the downloaded data into R
 
-See [here](#orgd070c14) for details.
+See [here](#orgf8f9e0b) for details.
 
 **Comparison with alternatives.**
 
@@ -27,7 +27,7 @@ See [here](#orgd070c14) for details.
 
 ## Dependencies
 
-<a id="org77a0e4b"></a>
+<a id="orgc8d4481"></a>
 
 | Type   | Dep  | Version (todo) |
 |------ |---- |-------------- |
@@ -40,18 +40,28 @@ This package was only tested in a Linux system, although it should work on Mac a
 
 ## How to use
 
-<a id="orgd070c14"></a>
+<a id="orgf8f9e0b"></a>
 
-1.  Clone the repo.
+1.  Clone the repo. For example, you might run
+    
+    ```shell
+    git clone https://github.com/pereiragc/brazil-household-panel /home/johndoe/PNAD
+    ```
+    
+    if your home folder is `/home/johndoe`. This will set up the repository in `/home/johndoe/PNAD/`.
+
 2.  In a terminal, navigate to the `src/shell` directory, and run
     
-    ```sh
+    ```shell
     ./pnad_dl.sh -b 2012 -e 2015
     ```
     
-    this specifies that years in the 2012-2015 range should be downloaded.
+    this specifies that years in the 2012-2015 range should be downloaded. For our fictitious user, the output will be in `/home/johndoe/PNAD/data`
     
-    See the documentation section for more information.
+    The column dictionary is automatically downloaded to the same data directory.
+3.  To load the data, open `run.r`, make sure the variable `proj.path` points to the right directory, and set start/end year/quarter accordingly. Then simply run an instance of R and `source` `run.r`.
+    
+    The variable \`list\_dt\` will contain the loaded datasets.
 
 ## Documentation
 
