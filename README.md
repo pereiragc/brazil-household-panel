@@ -2,9 +2,7 @@
 
 **Work in progress.**
 
-*PNAD contínua* is a comprehensive household survey conducted by the [Brazilian Institute of Geography and Statistics (IBGE)](https://www.ibge.gov.br).
-
-There are two uncomfortable things about the way IBGE distributes the micro-data of *PNAD Contínua*:
+*PNAD contínua* is a comprehensive household survey conducted by the [Brazilian Institute of Geography and Statistics (IBGE)](https://www.ibge.gov.br). There are two uncomfortable things about the way IBGE distributes the micro-data of *PNAD Contínua*:
 
 1.  Data are provided in \`fixed width format\`, along with a dictionary that maps column names to start and end positions. The provided dictionary, however, does not work "out of the box" with R
 2.  Every quarter, when IBGE releases new PNAD waves, the filenames of *all* previous datasets also change. For example, the files for the 2017 data are named as follows (as of the time I'm writing this README file):
@@ -19,9 +17,7 @@ This package seeks to address these two issues. It provides:
 -   [X] A shell script for downloading PNAD data in a given range of years
 -   [ ] An R script for reading the downloaded data into R (under construction)
 
-See [here](#orgdd2bb60) for details.
-
-This package was only tested in a Linux system, although it should work on Mac and other Unix based OSs, provided the [dependencies](#orge5b0cbe) are met.
+See [here](#org85edd6c) for details.
 
 **Comparison with alternatives.**
 
@@ -30,7 +26,7 @@ This package was only tested in a Linux system, although it should work on Mac a
 
 ## Dependencies
 
-<a id="orge5b0cbe"></a>
+<a id="orgddb4cdf"></a>
 
 | Type   | Dep  | Version (todo) |
 |------ |---- |-------------- |
@@ -39,9 +35,11 @@ This package was only tested in a Linux system, although it should work on Mac a
 |        | curl |                |
 |        | sed  |                |
 
+This package was only tested in a Linux system, although it should work on Mac and other Unix based OSs, provided the dependencies are met.
+
 ## How to use
 
-<a id="orgdd2bb60"></a>
+<a id="org85edd6c"></a>
 
 1.  Clone the repo.
 2.  In a terminal, navigate to the `src/shell` directory, and run
