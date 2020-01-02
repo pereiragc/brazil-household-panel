@@ -111,10 +111,9 @@ if [[ "$dic_opt" != "no" ]]; then
         echo "WARNING: Multiple dictionary files; downloading first one"
     fi
 
-    dict_file=$(echo $lfiles | grep -m 1 "Dicionario_e_input")
-
-
-    curl -# "$base_url/Documentacao/$dict_file" -o "doc.zip"
+    dict_file=$(grep -m 1 "Dicionario_e_input" <<<$lfiles)
+    echo "$base_url/Documentacao/$dict_file" 
+    # curl -# "$base_url/Documentacao/$dict_file" -o "doc.zip"
 
     doc_contents=$(unzip -ql doc.zip)
     file_check="Input_PNADC_trimestral.txt"
@@ -163,3 +162,4 @@ while [[ "$this_year" -ge "$year_begin" && "$this_year" -le "$year_end" ]]; do
     sleep $rest_time
     this_year=$((this_year+1))
 done
+
