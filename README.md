@@ -17,7 +17,7 @@ This package seeks to address these two issues. It provides:
 -   [X] A shell script for downloading PNAD data in a given range of years
 -   [X] An R script for reading the downloaded data into R
 
-See [here](#orgdd91b3b) for details.
+See [here](#org34c0519) for details.
 
 **Comparison with alternatives.**
 
@@ -27,7 +27,9 @@ See [here](#orgdd91b3b) for details.
 
 ## Dependencies
 
-<a id="org026f94d"></a> The versions listed below are the ones I used.
+<a id="org7e34a84"></a>
+
+The versions listed below were the ones used in the testing process, not necessarily the oldest compatible version.
 
 | Type   | Dep        | Version (todo) |
 |------ |---------- |-------------- |
@@ -44,7 +46,7 @@ This package was only tested in a Linux system, although it should work on Mac a
 
 ## How to use
 
-<a id="orgdd91b3b"></a>
+<a id="org34c0519"></a>
 
 1.  Clone the repo. For example, you might run
     
