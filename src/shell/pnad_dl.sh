@@ -114,7 +114,7 @@ if [[ "$dic_opt" != "no" ]]; then
     dict_file=$(echo $lfiles | grep -m 1 "Dicionario_e_input")
 
 
-    curl -# "$base_url/$dict_file" -o "doc.zip"
+    curl -# "$base_url/Documentacao/$dict_file" -o "doc.zip"
 
     doc_contents=$(unzip -ql doc.zip)
     file_check="Input_PNADC_trimestral.txt"
