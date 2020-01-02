@@ -14,7 +14,7 @@ source("src/R/common.R")
 
 
 # Get reading dictionary
-dict.filename <- paste(proj.path, "data/Input_PNADC_trimestral.txt", sep="/")
+dict.filename <- file.path(proj.path, "data", "Input_PNADC_trimestral.txt")
 coldict  <- getcoldict(dict.filename) # Required for `pnad.read`
 
 startyear  <- 2012
@@ -22,7 +22,7 @@ startqtr  <- 01
 endyear  <-  2012
 endqtr  <- 02
 
-pnad.data.path <- paste(proj.path, "data", sep="/")
+pnad.data.path <- file.path(proj.path, "data")
 list_dt <- pnad.read(pnad.data.path, coldict,
                      startyear, startqtr, endyear, endqtr)
 
