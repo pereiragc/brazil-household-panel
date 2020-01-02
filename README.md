@@ -17,7 +17,7 @@ This package seeks to address these two issues. It provides:
 -   [X] A shell script for downloading PNAD data in a given range of years
 -   [X] An R script for reading the downloaded data into R
 
-See [here](#orgf8f9e0b) for details.
+See [here](#orgbda9993) for details.
 
 **Comparison with alternatives.**
 
@@ -27,7 +27,7 @@ See [here](#orgf8f9e0b) for details.
 
 ## Dependencies
 
-<a id="orgc8d4481"></a>
+<a id="org4f5a4a8"></a>
 
 | Type   | Dep  | Version (todo) |
 |------ |---- |-------------- |
@@ -40,7 +40,7 @@ This package was only tested in a Linux system, although it should work on Mac a
 
 ## How to use
 
-<a id="orgf8f9e0b"></a>
+<a id="orgbda9993"></a>
 
 1.  Clone the repo. For example, you might run
     
@@ -59,9 +59,9 @@ This package was only tested in a Linux system, although it should work on Mac a
     this specifies that years in the 2012-2015 range should be downloaded. For our fictitious user, the output will be in `/home/johndoe/PNAD/data`
     
     The column dictionary is automatically downloaded to the same data directory.
-3.  To load the data, open `run.r`, make sure the variable `proj.path` points to the right directory, and set start/end year/quarter accordingly. Then simply run an instance of R and `source` `run.r`.
+3.  To load the data, edit `run.r`, making sure the variable `proj.path` points to the right directory, and date range is correctly specified. Then simply run an instance of R and `source` `run.r`.
     
-    The variable \`list\_dt\` will contain the loaded datasets.
+    The variable \`list\_dt\` will contain data for the specified range.
 
 ## Documentation
 
