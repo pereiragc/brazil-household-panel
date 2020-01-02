@@ -17,16 +17,17 @@ This package seeks to address these two issues. It provides:
 -   [X] A shell script for downloading PNAD data in a given range of years
 -   [ ] An R script for reading the downloaded data into R (under construction)
 
-See [here](#org85edd6c) for details.
+See [here](#orgd070c14) for details.
 
 **Comparison with alternatives.**
 
--   **lodown/adsfree:** Check it out [here](http://asdfree.com/pesquisa-nacional-por-amostra-de-domicilios-continua-pnadc.html). Didn't work for me because it requires maintainers to update the package whenever the filename suffix &#x2013; as exemplified above &#x2013; changes. The package doesn't work as of Jan 1st, 2020.
+-   **lodown/adsfree:** Check it out [here](http://asdfree.com/pesquisa-nacional-por-amostra-de-domicilios-continua-pnadc.html). Comparison TBA.
+-   **microdadosBrasil:** See [here](https://github.com/lucasmation/microdadosBrasil). Didn't work for me because it requires maintainers to update the package whenever the filename suffix &#x2013; as exemplified above &#x2013; changes. The package doesn't work as of Jan 1st, 2020.
 -   **Datazoom:** [Link](http://www.econ.puc-rio.br/datazoom/english/index.html). Only works with Stata, therefore I haven't tested that.
 
 ## Dependencies
 
-<a id="orgddb4cdf"></a>
+<a id="org77a0e4b"></a>
 
 | Type   | Dep  | Version (todo) |
 |------ |---- |-------------- |
@@ -39,7 +40,7 @@ This package was only tested in a Linux system, although it should work on Mac a
 
 ## How to use
 
-<a id="org85edd6c"></a>
+<a id="orgd070c14"></a>
 
 1.  Clone the repo.
 2.  In a terminal, navigate to the `src/shell` directory, and run
