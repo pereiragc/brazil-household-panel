@@ -132,7 +132,9 @@ if [[ "$dic_opt" != "no" ]]; then
     sleep $rest_time
 fi
 
-[[ "$dic_opt" == "only" ]] && exit 0
+if [[ "$dic_opt" == "only" ]]; then
+   exit 0
+fi
 
 echo " "
 echo "Starting data download."
