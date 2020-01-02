@@ -96,8 +96,24 @@ if [[ "$dic_opt" != "no" ]]; then
     echo " "
     echo "Downloading dictionary..."
 
-    # Download dictionary
-    curl -# "$base_url/Documentacao/Dicionario_e_input.zip"  -o "doc.zip"
+
+    # Try to find dictionary: how many matches?
+    lfiles=$(curl -s -l "$base_url/Documentacao/")
+    nm=$(echo $lfiles | grep -c "Dicionario_e_input")
+    if [[ $nm -eq 0 ]]; then
+        # zero matches
+        cd ..
+        err "Dictionary file not found"
+    fi
+    if [[ $nm -gt 2 ]]; then
+        # more than one match
+        echo "WARNING: Multiple dictionary files; downloading first one"
+    fi
+
+    dict_file=$(echo $lfiles | grep -m 1 "Dicionario_e_input")
+
+
+    curl -# "$base_url/$dict_file" -o "doc.zip"
 
     doc_contents=$(unzip -ql doc.zip)
     file_check="Input_PNADC_trimestral.txt"
