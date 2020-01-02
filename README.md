@@ -2,26 +2,26 @@
 
 **Work in progress.**
 
-This package downloads and reads the *PNAD Contínua* survey datasets. *PNAD contínua* is conducted by [Brazilian Institute of Geography and Statistics (IBGE)](https://www.ibge.gov.br).
+*PNAD contínua* is a comprehensive household survey conducted by the [Brazilian Institute of Geography and Statistics (IBGE)](https://www.ibge.gov.br).
 
-There are two peculiarities about the way IBGE operates:
+There are two uncomfortable things about the way IBGE distributes the micro-data of *PNAD Contínua*:
 
-1.  Data are provided in \`fixed width format\` along with a dictionary mapping start/end positions to column names. The provided dictionary, however, does not work "out of the box" with R
-2.  Every quarter, when IBGE releases new PNAD waves, the filenames of *all* previous datasets also change. For example, the files for the 2017 waves are named as follows (as of the writing of this README file):
+1.  Data are provided in \`fixed width format\`, along with a dictionary that maps column names to start and end positions. The provided dictionary, however, does not work "out of the box" with R
+2.  Every quarter, when IBGE releases new PNAD waves, the filenames of *all* previous datasets also change. For example, the files for the 2017 data are named as follows (as of the time I'm writing this README file):
     
         PNADC_012017_20190729.zip
         PNADC_022017_20190729.zip
         PNADC_032017_20190729.zip
         PNADC_042017_20190729.zip
 
-This package provides:
+This package seeks to address these two issues. It provides:
 
 -   [X] A shell script for downloading PNAD data in a given range of years
--   [ ] An R script for reading the downloaded data into R
+-   [ ] An R script for reading the downloaded data into R (under construction)
 
-See [here](#org970ab78) for details.
+See [here](#org2fc85cb) for details.
 
-This package was only tested in a Linux system, although it should work on Mac and other Unix based OSs, provided the [dependencies](#org6c5617b) are met.
+This package was only tested in a Linux system, although it should work on Mac and other Unix based OSs, provided the [dependencies](#orgb02f6a9) are met.
 
 **Comparison with alternatives.**
 
@@ -30,10 +30,10 @@ This package was only tested in a Linux system, although it should work on Mac a
 
 ## Dependencies
 
-<a id="org6c5617b"></a>
+<a id="orgb02f6a9"></a>
 
 | Type   | Dep  | Version (todo) |
-|--------|------|----------------|
+|------ |---- |-------------- |
 | System |      |                |
 |        | bash |                |
 |        | curl |                |
@@ -41,7 +41,7 @@ This package was only tested in a Linux system, although it should work on Mac a
 
 ## How to use
 
-<a id="org970ab78"></a>
+<a id="org2fc85cb"></a>
 
 1.  Clone the repo.
 2.  In a terminal, navigate to the `src/shell` directory, and run
