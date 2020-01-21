@@ -2,7 +2,6 @@ library(data.table)
 library(readr)
 
 
-
 ## For state labeling -----------------------------------------------------------
 state.names <- c("Acre", "Alagoas", "Amapa", "Amazonas", "Bahia", "Ceara",
                  "Distrito Federal","Espirito Santo", "Goias", "Maranhao",
@@ -11,8 +10,9 @@ state.names <- c("Acre", "Alagoas", "Amapa", "Amazonas", "Bahia", "Ceara",
                  "Rio Grande do Norte", "Rio Grande do Sul", "Rondonia",
                  "Roraima", "Santa Catarina", "Sao Paulo", "Sergipe",
                  "Tocantins")
-state.codes <- c(12, 27, 16, 13, 29, 23, 53, 32, 52, 21, 51, 50, 31, 15, 25, 41,
-                 26, 22, 33, 24, 43, 11, 14, 42, 35, 28, 17)
+state.codes <- c("12", "27", "16", "13", "29", "23", "53", "32", "52", "21",
+                 "51", "50", "31", "15", "25", "41", "26", "22", "33", "24",
+                 "43", "11", "14", "42", "35", "28", "17")
 uf_translate <- data.table(UF=state.codes,
                            uf_name=factor(state.names, ordered = TRUE))
 ## ------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ uf_translate <- data.table(UF=state.codes,
 getcoldict  <- function(dict.filename){
   # dict.filename  <- paste(pnad.data.path, "Input_PNADC_trimestral.txt", sep="/")
 
-  input.parse <- readLines(dict.filename)
+  input.parse <- read_delim(dict.filename, "\n", locale=locale(encoding="ISO-8859-1"), col_names=FALSE, progress=FALSE)$X1
 
   # Locate variable specification range in Dictionary string
   skip  <- min(grep("input", input.parse))+1
