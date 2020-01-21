@@ -2,6 +2,7 @@ proj.path <- "/home/johndoe/PNAD"
 setwd(proj.path)
 
 
+source("src/R/common.R")
 source("src/R/clean.R")
 ## clean.R provides: `getcoldict`, `pnad.get.downloaded`, `pnad.raw.read`,
 ##                   `pnad.read`

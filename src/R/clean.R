@@ -1,6 +1,23 @@
 library(data.table)
 library(readr)
 
+
+
+## For state labeling -----------------------------------------------------------
+state.names <- c("Acre", "Alagoas", "Amapa", "Amazonas", "Bahia", "Ceara",
+                 "Distrito Federal","Espirito Santo", "Goias", "Maranhao",
+                 "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Para",
+                 "Paraiba", "Parana", "Pernambuco", "Piaui", "Rio de Janeiro",
+                 "Rio Grande do Norte", "Rio Grande do Sul", "Rondonia",
+                 "Roraima", "Santa Catarina", "Sao Paulo", "Sergipe",
+                 "Tocantins")
+state.codes <- c(12, 27, 16, 13, 29, 23, 53, 32, 52, 21, 51, 50, 31, 15, 25, 41,
+                 26, 22, 33, 24, 43, 11, 14, 42, 35, 28, 17)
+uf_translate <- data.table(UF=state.codes,
+                           uf_name=factor(state.names, ordered = TRUE))
+## ------------------------------------------------------------------------------
+
+
 getcoldict  <- function(dict.filename){
   # dict.filename  <- paste(pnad.data.path, "Input_PNADC_trimestral.txt", sep="/")
 
@@ -9,7 +26,7 @@ getcoldict  <- function(dict.filename){
   # Locate variable specification range in Dictionary string
   skip  <- min(grep("input", input.parse))+1
   final  <- max(grep("^;", input.parse)) - 1
-  input.select  <- input.parse[skip:final] 
+  input.select  <- input.parse[skip:final]
 
   # Use regex to find column description/whether it's numeric/widths
   # (This part of the code is highly idiosyncratic to the dictionary file.)
@@ -57,13 +74,15 @@ pnad.get.downloaded <- function(pnad.data.path="./data"){
 }
 
 pnad.read <- function(pnad.data.path, coldict,
-                      startyear, startqtr, endyear, endqtr) {
+                      startyear, startqtr, endyear, endqtr,
+                      label_states="uf_name") {
   all.years <- pnad.get.downloaded(pnad.data.path)[
     lexicompare(yr, qtr, vals=c(startyear, startqtr), binop=`>=`) &
     lexicompare(yr, qtr, vals=c(endyear, endqtr), binop=`<=`)
   ]
 
-  lfulldata  <- lapply(all.years[,filename], pnad.raw.read, coldict=coldict)
+  lfulldata  <- lapply(all.years[,filename], pnad.raw.read, 
+                       coldict=coldict, label_states=label_states)
   names(lfulldata) <- all.years[, lname]
 
   return(lfulldata)
@@ -71,15 +90,23 @@ pnad.read <- function(pnad.data.path, coldict,
 }
 
 
-pnad.raw.read <- function(datazip, coldict){
-  # Prepare do_call
+
+
+
+pnad.raw.read <- function(datazip, coldict, label_states){
 
   DT <- read_fwf(datazip, fwf_widths(coldict$Width, coldict$Name),
                  col_types = column_specification(coldict),
                  na = c("", "."))
   DT  <- as.data.table(DT)
-  cols.convert.numeric  <-  coldict[IsNumeric == TRUE, Name]
 
+
+  if (!is.null(label_states)) {
+    DT[uf_translate, uf_name := uf_name, on="UF"]
+    setnames(DT, "uf_name", label_states)
+  }
+
+  ## cols.convert.numeric  <-  coldict[IsNumeric == TRUE, Name]
   ## for (col in cols.convert.numeric){
   ##   # cat("Doing ", col, "\n")
   ##   DT[, (col) := as.numeric(get(col))]
