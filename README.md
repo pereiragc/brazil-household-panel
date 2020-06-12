@@ -1,6 +1,11 @@
-# Brazil Household Panel
+# Deprecation warning
+This repo is deprecated in favor of 
 
-**Work in progress.**
+- [getpnad.sh](github.com/pereiragc/getpnad.sh) for properly downloading pnad data
+- [pnad-clean](github.com/pereiragc/pnad-clean) for cleaning the data after downloading zipfiles 
+
+
+# Legacy: Brazil Household Panel
 
 This package was built for those facing issues in downloading *PNAD contínua* with currently existing solutions, as described [here](#org056b579).
 
