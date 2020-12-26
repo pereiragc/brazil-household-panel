@@ -1,7 +1,7 @@
 # Deprecation warning
 This repo is deprecated in favor of 
 
-- [getpnad.sh](https://github.com/pereiragc/getpnad.sh) for properly downloading pnad data
+- [getpnad.sh](https://github.com/pereiragc/getpnad) for properly downloading pnad data
 - [pnad-clean](https://github.com/pereiragc/pnad-clean) for cleaning the data after downloading zipfiles 
 
 
